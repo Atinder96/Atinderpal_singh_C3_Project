@@ -39,7 +39,24 @@ class RestaurantTest {
     }
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<OPEN/CLOSED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+   // value of order
+   @Test
+   public void order_value_should_get_collective_total_when_all_item_selected(){
+        resturantCreate();
+        spoof = restaurant.getMenu();
+        assertEquals(518,restaurant.getOrderValue(spoof));
+   }
+   @Test
+   public void order_value_should_reduce_collective_total_when_an_item_removed(){
+        resturantCreate();
+        spoof = restaurant.getMenu();
+        int total = restaurant.getOrderValue(spoof);
+        int afterTotal = spoof.get(2).getPrice();
+        spoof.remove(2);
+        assertEquals(total-afterTotal,restaurant.getOrderValue(spoof));
+   }
 
+   // value of order
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>MENU<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     @Test

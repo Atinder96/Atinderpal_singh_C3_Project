@@ -15,23 +15,15 @@ public class Restaurant {
         this.location = location;
         this.openingTime = openingTime;
         this.closingTime = closingTime;
-    //for menu
-        this.menu.add((new Item("Plain Rice",50)));
-        this.menu.add((new Item("Jeera Rice",80)));
     }
 
-
-    public LocalTime getOpeningTime() {
-        return openingTime;
-    }
+    public LocalTime getOpeningTime() { return openingTime; }
 
     public void setOpeningTime(LocalTime openingTime) {
         this.openingTime = openingTime;
     }
 
-    public LocalTime getClosingTime() {
-        return closingTime;
-    }
+    public LocalTime getClosingTime() { return closingTime; }
 
     public void setClosingTime(LocalTime closingTime) {
         this.closingTime = closingTime;
@@ -42,34 +34,31 @@ public class Restaurant {
         LocalTime time = LocalTime.now();
         int isStillOpen = time.compareTo(closingTime);
         int isOpen = time.compareTo(openingTime);
-        if (isStillOpen < 0 && isOpen >= 0) {
+        if(isStillOpen<0&&isOpen>=0){
             return true;
         }
         return false;
         //DELETE ABOVE STATEMENT AND WRITE CODE HERE
     }
 
-    public LocalTime getCurrentTime() {
-        return LocalTime.now();
-    }
+    public LocalTime getCurrentTime(){ return  LocalTime.now(); }
 
     public List<Item> getMenu() {
         return this.menu;
     }
-
-    private Item findItemByName(String itemName) {
-        for (Item item : menu) {
-            if (item.getName().equals(itemName))
+    private Item findItemByName(String itemName){
+        for(Item item: menu) {
+            if(item.getName().equals(itemName))
                 return item;
         }
         return null;
     }
 
     public void addToMenu(String name, int price) {
-        Item newItem = new Item(name, price);
+        Item newItem = new Item(name,price);
         menu.add(newItem);
     }
-
+    
     public void removeFromMenu(String itemName) throws itemNotFoundException {
 
         Item itemToBeRemoved = findItemByName(itemName);
@@ -78,13 +67,12 @@ public class Restaurant {
 
         menu.remove(itemToBeRemoved);
     }
-
-    public void displayDetails() {
-        System.out.println("Restaurant:" + name + "\n"
-                + "Location:" + location + "\n"
-                + "Opening time:" + openingTime + "\n"
-                + "Closing time:" + closingTime + "\n"
-                + "Menu:" + "\n" + getMenu());
+    public void displayDetails(){
+        System.out.println("Restaurant:"+ name + "\n"
+                +"Location:"+ location + "\n"
+                +"Opening time:"+ openingTime +"\n"
+                +"Closing time:"+ closingTime +"\n"
+                +"Menu:"+"\n"+getMenu());
 
     }
 
@@ -92,11 +80,4 @@ public class Restaurant {
         return name;
     }
 
-    public int getOrderValue(List<Item> item) {
-        int totalValue = 0;
-        for (Item myitem : item) {
-            totalValue += myitem.getPrice();
-        }
-        return totalValue;
-    }
 }

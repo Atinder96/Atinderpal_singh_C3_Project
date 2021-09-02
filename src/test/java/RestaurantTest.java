@@ -49,7 +49,6 @@ class RestaurantTest {
    @Test
    public void order_value_should_reduce_collective_total_when_an_item_removed(){
         resturantCreate();
-        spoof = restaurant.getMenu();
         int total = restaurant.getOrderValue(spoof);
         int afterTotal = spoof.get(2).getPrice();
         spoof.remove(2);
